@@ -7,6 +7,8 @@ import { NasaService } from './services/nasa.service';
 import { Header } from './header/header.component';
 import { Welcome } from './welcome/welcome.component'; 
 import { BoardHeader } from './board-header/board-header.component'; 
+import { QuizService } from './services/quiz.service';
+import { Board } from './board/board.component';
 
 
 @NgModule({
@@ -15,13 +17,14 @@ import { BoardHeader } from './board-header/board-header.component';
     Nasa, 
     Header, 
     Welcome,
-    BoardHeader 
+    BoardHeader, 
+    Board 
   ],
   imports: [
     BrowserModule, 
     HttpModule
   ],
-  providers: [NasaService],
+  providers: [NasaService, QuizService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
