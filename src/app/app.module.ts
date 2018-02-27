@@ -6,6 +6,7 @@ import { Nasa } from './nasa.component';
 import { NasaService } from './services/nasa.service';
 import { Header } from './header/header.component';
 import { Welcome } from './welcome/welcome.component'; 
+import { BoardHeader } from './board-header/board-header.component'; 
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { Welcome } from './welcome/welcome.component';
     AppComponent, 
     Nasa, 
     Header, 
-    Welcome
+    Welcome,
+    BoardHeader 
   ],
   imports: [
     BrowserModule, 

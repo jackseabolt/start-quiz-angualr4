@@ -1,0 +1,13 @@
+.board-header {
+    width: 100%; 
+    background-color: rgb(20, 20, 20); 
+    margin-bottom: none; 
+}
+
+/* MOBILE STYLES */
+
+@media screen and (max-width: 700px) {
+    .board-header {
+        width: 100%;   
+    }
+}

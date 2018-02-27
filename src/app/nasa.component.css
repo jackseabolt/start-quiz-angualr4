@@ -62,7 +62,10 @@
 .nasa-title-container-end {
     height: 45px;  
     display: inline-block;
-    margin:0px; 
+    margin: 0px; 
+    padding: 0px; 
+    position: relative; 
+    left: -5px; 
 }
 
 .nasa-flex {
@@ -70,7 +73,7 @@
 }
 
 .nasa-section-right {
-    width: 500px; 
+    width: 550px; 
     display: inline-block; 
 }
 
@@ -106,6 +109,12 @@
     .nasa-section-left {
         width: calc(100% - 100px); 
         display: block;
+    }
+}
+
+@media screen and (max-width: 550px){
+    .nasa-title-container-end {
+       display: none; 
     }
 }
 
