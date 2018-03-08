@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core'; 
 import { NasaService } from './services/nasa.service'; 
+import { AppState } from './reducers/reducer'; 
+import { NgRedux, select } from 'ng2-redux';
+import { setNasaImage } from './actions/actions';  
 
 @Component({
     templateUrl: './nasa.component.html', 
@@ -8,21 +11,20 @@ import { NasaService } from './services/nasa.service';
 })
 
 export class Nasa implements OnInit {
-    constructor(private service: NasaService) {
+    constructor(private service: NasaService, private ngRedux: NgRedux<AppState>) {
 
     }
 
-    imageUrl; 
+    @select('nasaImageUrl') nasaImageUrl; 
+    @select('counter') counter; 
 
     ngOnInit() {
-        console.log("this was called")
         this.service.getPicture()
             .subscribe(res => {
-                this.imageUrl = res.json().url
-                console.log(this.imageUrl)
+                let imageUrl = res.json().url
+                this.ngRedux.dispatch(setNasaImage(imageUrl))
             }), error => {
                 console.error(error); 
             }
-    }
-    
+    } 
 }
