@@ -12,8 +12,7 @@
                     <p class="nasa-title">NASA Image of the Day</p>
                 </div>
                 <img class="nasa-title-container-end" src="assets/images/title-container-end.png" alt="graphic" />
-                
-                <img class="nasa-image" [src]="imageUrl" />
+                <img class="nasa-image" [src]="nasaImageUrl | async" />
             </div>
         </div>
     </div>

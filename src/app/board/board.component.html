@@ -1,5 +1,6 @@
-<div className="board"> 
-    <div className="board-container">
-        
+<div class="board"> 
+    <div class="board-container">
+       <boardPost *ngFor="let quiz of quizes | async" [quiz]="quiz">
+       </boardPost>
     </div>
 </div>
