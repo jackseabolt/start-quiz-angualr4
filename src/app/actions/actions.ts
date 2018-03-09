@@ -19,3 +19,14 @@ export const TOGGLE_PICTURE_INFO = 'TOGGLE_PICTURE_INFO';
 export const togglePictureInfo = () => ({
     type: TOGGLE_PICTURE_INFO
 });
+
+export const SET_CURRENT_QUIZ_STATUS = 'SET_CURRENT_QUIZ_STATUS'; 
+export const setCurrentQuizStatus = quiz => ({
+    type: SET_CURRENT_QUIZ_STATUS, 
+    quiz
+});
+
+export const CLEAR_QUIZ = 'CLEAR_QUIZ'; 
+export const clearQuiz = () => ({
+    type: CLEAR_QUIZ, 
+}); 

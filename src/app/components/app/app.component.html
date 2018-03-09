@@ -5,6 +5,6 @@
     <nasa></nasa>
     <board></board>
     <nasaPhoto *ngIf="photoDisplayed | async"></nasaPhoto>
-    <quiz *ngIf="quizDisplayed"></quiz>
+    <quiz *ngIf="usingQuiz | async"></quiz>
 </div>
 
