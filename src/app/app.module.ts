@@ -16,6 +16,7 @@ import { NasaPhoto } from './components/nasa-photo/nasa-photo.component';
 import { NasaPhotoInfo } from './components/nasa-photo-info/nasa-photo-info.component';
 import { Quiz } from './components/quiz/quiz.component';
 import { FormsModule } from '@angular/forms'; 
+import { Score } from './components/score/score.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FormsModule } from '@angular/forms';
     BoardPost,
     NasaPhoto, 
     NasaPhotoInfo, 
-    Quiz 
+    Quiz,
+    Score 
   ],
   imports: [
     BrowserModule, 

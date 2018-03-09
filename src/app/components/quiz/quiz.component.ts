@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgRedux, select } from 'ng2-redux'; 
 import { AppState } from '../../reducers/reducer';
 import { QuizService } from '../../services/quiz.service';  
-import { clearQuiz } from '../../actions/actions'; 
+import { clearQuiz, setCurrentQuizStatus } from '../../actions/actions'; 
 
 @Component({ 
     selector: 'quiz', 
@@ -19,7 +19,9 @@ export class Quiz implements OnInit {
     @select('answers') answers; 
     @select('sessionId') sessionId$; 
     @select('continue') continue$; 
-    @select('correctAnswer') correctAnswer$; 
+    @select('correctAnswer') correctAnswer$;
+    @select('response') response; 
+
     correctAnswer; 
     sessionId; 
     continue; 
@@ -40,47 +42,38 @@ export class Quiz implements OnInit {
         this.started = !this.started
     }
 
-    // handleSubmit(event) {  
-    //     event.preventDefault();
-    //     if (this.props.correctAnswer && this.props.continue) {
-    //         this.props.dispatch(getNewQuestion(this.props.title, this.props.sessionId)); 
-    //     }
-    //     else if (this.props.continue) {
-    //         const { answer } = this.form; 
-    //         this.props.dispatch(answerQuiz(this.props.title, answer.value, this.props.sessionId)); 
-    //     }
-    //     else {
-    //         this.props.dispatch(deleteSession(this.props.sessionId))
-    //     }
-    // }
 
     handleSubmit(quizAnswer) {
-        console.log(this.currentQuiz, this.userAnswer, this.continue, this.sessionId, this.correctAnswer)
-
-
         if (this.correctAnswer && this.continue) {
-            // this.props.dispatch(getNewQuestion(this.props.title, this.props.sessionId)); 
+            this.service.getNewQuestion(this.currentQuiz, this.sessionId) 
+                .subscribe(res => {
+                    let quiz = res.json()
+                    if(quiz.quizLength) {
+                        this.answered = !this.answered
+                        return this.ngRedux.dispatch(setCurrentQuizStatus(quiz))
+                    } else {
+                        return console.error('Quiz has no questions!')
+                    }
+                }),
+            error => console.error(error); 
         }
         else if (this.continue) {
             this.answered = !this.answered
-            console.log("HEEEEEEYYYYYY")
             this.service.answerQuiz(this.currentQuiz, this.userAnswer, this.sessionId) 
                 .subscribe(res => {
-                    console.log(res.json())
-                    console.log(res.json().correct_answer)
-                })
-                // .then(quiz => {}
-            //     if(quiz.quizLength) {
-            //         return dispatch(setCurrentQuizStatus(quiz))
-            //     } else {
-            //         return console.error('Quiz has no questions!')
-            //     }
-            // })
-            // .catch(err => console.error(err)); 
-        // }
+                    let quiz = res.json()
+                    this.ngRedux.dispatch(setCurrentQuizStatus(quiz))
+                }), error => {
+                    console.error(error); 
+                }
         }
         else {
-            // this.props.dispatch(deleteSession(this.props.sessionId))
+            this.service.deleteSession(this.sessionId)
+                .subscribe(res => {
+                    this.ngRedux.dispatch(clearQuiz())
+                }), error => {
+                    console.error(error); 
+                }
         }
     }
 

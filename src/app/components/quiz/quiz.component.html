@@ -6,14 +6,16 @@
 
 
        <div *ngIf="started">
-            <h2 class="quiz-title">{{ currentQuiz | async }} Quiz</h2>
-                <!-- { correctAnswer } -->
+            <h2 class="quiz-title">{{ currentQuiz }} Quiz</h2>
+            <div *ngIf="answered" class="global-center"><h4>{{ response | async }}</h4><score ></score></div>
                 <p *ngIf="!answered" class="quiz-p"><strong>QUESTION:</strong> {{ currentQuestion | async }}</p>
                 <form class="quiz-form">
                     <div *ngFor="let answer of answers | async" class="quiz-question">
                         <input [(ngModel)]="userAnswer" type="radio" name="answer" [value]='answer' /> <span class="quiz-question-label">{{ answer }} </span>
                     </div>
                     <button *ngIf="!answered" class="quiz-button-submit" (click)="handleSubmit()">Submit</button>
+                    <button *ngIf="answered && continue" class="quiz-button-submit" (click)="handleSubmit()">Next</button>
+                    <button *ngIf="!continue" class="quiz-button-submit" (click)="handleSubmit()">End</button> 
                 </form>
         </div>
 
