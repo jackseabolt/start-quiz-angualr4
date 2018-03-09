@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { NasaPhoto } from './components/nasa-photo/nasa-photo.component';
 import { NasaPhotoInfo } from './components/nasa-photo-info/nasa-photo-info.component';
 import { Quiz } from './components/quiz/quiz.component';
+import { FormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { Quiz } from './components/quiz/quiz.component';
   imports: [
     BrowserModule, 
     HttpModule, 
-    NgReduxModule, 
+    NgReduxModule,
+    FormsModule, 
     RouterModule.forRoot([
       { path: '', component: AppComponent}, 
       { path: 'picture', component: NasaPhoto}, 

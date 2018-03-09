@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgRedux, select } from 'ng2-redux'; 
 import { AppState } from '../../reducers/reducer'; 
 import { togglePicture } from '../../actions/actions'; 
@@ -9,9 +9,12 @@ import { togglePicture } from '../../actions/actions';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent  { 
+export class AppComponent implements OnInit  { 
   constructor(private ngRedux: NgRedux<AppState>) {}
   @select('photoDisplayed') photoDisplayed;
+  @select('usingQuiz') usingQuiz; 
 
-  quizDisplayed: false; 
+  ngOnInit() {
+    console.log("VALUE", this.photoDisplayed)
+  }
 }

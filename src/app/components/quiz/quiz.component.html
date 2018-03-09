@@ -1,24 +1,27 @@
 <div class="quiz-backdrop">
     <div class="quiz-main">
-        <div class="quiz-close" >
+        <div class="quiz-close" (click)="handleClose()" >
             <i class="fas fa-times quiz-close-icon"></i>
         </div>
 
 
-        <!-- <div>
-            <h2 className="quiz-title">{this.props.title} Quiz</h2>
-                { correctAnswer }
-                <form className="quiz-form" onSubmit={e => this.handleSubmit(e)} ref={form => this.form = form}>
-                    { answers }
-                    { button }
+       <div *ngIf="started">
+            <h2 class="quiz-title">{{ currentQuiz | async }} Quiz</h2>
+                <!-- { correctAnswer } -->
+                <p *ngIf="!answered" class="quiz-p"><strong>QUESTION:</strong> {{ currentQuestion | async }}</p>
+                <form class="quiz-form">
+                    <div *ngFor="let answer of answers | async" class="quiz-question">
+                        <input [(ngModel)]="userAnswer" type="radio" name="answer" [value]='answer' /> <span class="quiz-question-label">{{ answer }} </span>
+                    </div>
+                    <button *ngIf="!answered" class="quiz-button-submit" (click)="handleSubmit()">Submit</button>
                 </form>
-        </div> -->
+        </div>
 
-        <div>
-            <h2 class="quiz-title">____ Quiz</h2>
-            <p class="quiz-p">So you think you know about ____? This quiz contains ____ questions that will test your knowledge.<br /><br />
+        <div *ngIf="!started">
+            <h2 class="quiz-title">{{ currentQuiz }} Quiz</h2>
+            <p class="quiz-p">So you think you know about {{ currentQuiz }}? This quiz contains {{ quizLength | async }} questions that will test your knowledge.<br /><br />
             Good luck!</p>
-             <button class="quiz-button-start">Start</button>
+             <button class="quiz-button-start" (click)="startQuiz()">Start</button>
         </div>
 
     </div>
