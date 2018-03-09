@@ -1,0 +1,12 @@
+<div class="nasa-photo-backdrop">
+    <div class="nasa-photo-main">
+        <div class="nasa-photo-close" (click)="photoToggle()">
+            <i class="fas fa-times nasa-photo-close-icon"></i>
+        </div>
+        <div class="nasa-photo-info" (click)="infoToggle()">
+            <i class="far fa-info-circle nasa-photo-info-icon"></i>
+        </div>
+        <img class="nasa-photo" alt="NASA Image" [src]="nasaImageUrl | async" />
+        <nasaPhotoInfo *ngIf="infoOn | async"></nasaPhotoInfo>
+    </div>
+</div>
