@@ -1,0 +1,7 @@
+<div class="nasa-photo-info-container">
+    <div class="nasa-photo-info-close" (click)="infoToggle()">
+        <i class="fas fa-times nasa-photo-info-close-icon"></i>
+    </div>
+    <h4 class="global-paragraph-mini-darkback">{{ nasaImageTitle | async }}</h4>
+    <p class="global-paragraph-mini-darkback">{{ nasaImageExplanation | async }}</p>
+</div> 

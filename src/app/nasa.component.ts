@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NasaService } from './services/nasa.service'; 
 import { AppState } from './reducers/reducer'; 
 import { NgRedux, select } from 'ng2-redux';
-import { setNasaImage } from './actions/actions';  
+import { setNasaImage, togglePicture } from './actions/actions'; 
+
 
 @Component({
     templateUrl: './nasa.component.html', 
@@ -16,15 +17,18 @@ export class Nasa implements OnInit {
     }
 
     @select('nasaImageUrl') nasaImageUrl; 
-    @select('counter') counter; 
 
     ngOnInit() {
         this.service.getPicture()
             .subscribe(res => {
-                let imageUrl = res.json().url
-                this.ngRedux.dispatch(setNasaImage(imageUrl))
+                let imageData = res.json()
+                this.ngRedux.dispatch(setNasaImage(imageData))
             }), error => {
                 console.error(error); 
             }
     } 
+
+    photoToggle() {
+        this.ngRedux.dispatch(togglePicture())
+    }
 }
