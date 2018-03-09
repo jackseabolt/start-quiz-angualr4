@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'; 
-import { AppState } from '../reducers/reducer'; 
+import { AppState } from '../../reducers/reducer'; 
 import { NgRedux, select } from 'ng2-redux'; 
-import { togglePicture, togglePictureInfo } from '../actions/actions'; 
+import { togglePicture, togglePictureInfo } from '../../actions/actions'; 
 
 @Component({
     selector: 'nasaPhoto',

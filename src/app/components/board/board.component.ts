@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'; 
-import { QuizService } from '../services/quiz.service';
+import { QuizService } from '../../services/quiz.service';
 import { NgRedux, select } from 'ng2-redux'; 
-import { AppState } from '../reducers/reducer'; 
-import { setAllQuizes } from '../actions/actions';
+import { AppState } from '../../reducers/reducer'; 
+import { setAllQuizes } from '../../actions/actions';
 
 @Component({ 
     selector: 'board', 

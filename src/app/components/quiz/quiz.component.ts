@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgRedux, select } from 'ng2-redux'; 
-import { AppState } from '../reducers/reducer';  
+import { AppState } from '../../reducers/reducer';  
 
 @Component({ 
     selector: 'quiz', 

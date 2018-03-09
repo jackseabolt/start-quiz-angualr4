@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'; 
-import { NasaService } from './services/nasa.service'; 
-import { AppState } from './reducers/reducer'; 
+import { NasaService } from '../../services/nasa.service'; 
+import { AppState } from '../../reducers/reducer'; 
 import { NgRedux, select } from 'ng2-redux';
-import { setNasaImage, togglePicture } from './actions/actions'; 
+import { setNasaImage, togglePicture } from '../../actions/actions'; 
 
 
 @Component({
